@@ -29,7 +29,7 @@ export default async function EventsPage({
     return <div className="p-4 text-red-500">You must be signed in to view events.</div>;
   }
 
-  let userTier = (user.publicMetadata.tier as string) ?? "free";
+  const userTier = (user.publicMetadata.tier as string) ?? "free";
   const allowedTiers = getAllowedTiers(userTier);
 
   const currentPage = parseInt(searchParams.page || "1", 10);
@@ -46,7 +46,7 @@ export default async function EventsPage({
   if (filterTiers.length > 0) {
     query = query.in("tier", filterTiers);
   } else {
-    query = query.in("tier", allowedTiers);
+    query = query.in("tier", TIER_ORDER);
   }
 
   query = query.order("event_date", { ascending: sortDirection === "asc" });
