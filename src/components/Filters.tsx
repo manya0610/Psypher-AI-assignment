@@ -1,5 +1,5 @@
 'use client';
-import { TIER_ORDER } from "@/utils/tier";
+import { TIER_ORDER } from "../utils/tier";
 import { useSearchParams } from "next/navigation";
 
 export function Filters() {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { isLockedEvent } from "@/utils/tier";
+import { isLockedEvent } from "../utils/tier";
 
 const tierBadgeStyles: Record<string, string> = {
   free: "bg-gray-200 text-gray-700",

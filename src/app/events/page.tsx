@@ -1,9 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "../../lib/supabase";
 import Link from "next/link";
-import { EventCard } from "@/components/EventCard";
-import { Filters } from "@/components/Filters";
-import { getAllowedTiers } from "@/utils/tier";
+import { EventCard } from "../../components/EventCard";
+import { Filters } from "../../components/Filters";
+import { getAllowedTiers } from "../../utils/tier";
 
 export default async function EventsPage({
   searchParams,
