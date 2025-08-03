@@ -5,19 +5,22 @@ import { EventCard } from "../../components/EventCard";
 import { Filters } from "../../components/Filters";
 import { getAllowedTiers } from "../../utils/tier";
 
-export default async function EventsPage({
-  searchParams,
-}: {
-  searchParams: {
+import React from "react";
+
+interface Props {
+  searchParams: Promise<{
     page?: string;
     sort?: string;
     tier?: string | string[];
     max_per_page?: string;
     start_date?: string;
     end_date?: string;
-  };
-}) {
-  searchParams = await searchParams;
+  }>;
+}
+
+
+export default async function EventsPage(props: Props) {
+  const searchParams = await props.searchParams;
   const user = await currentUser();
   if (!user) {
     return (
