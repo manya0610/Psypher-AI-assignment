@@ -18,14 +18,26 @@ interface Props {
   }>;
 }
 
-
 export default async function EventsPage(props: Props) {
   const searchParams = await props.searchParams;
   const user = await currentUser();
   if (!user) {
     return (
-      <div className="p-4 text-red-500">
-        You must be signed in to view events.
+      <div className="flex flex-col items-center justify-center h-[70vh] text-center space-y-4">
+        <div className="text-4xl">🔒</div>
+        <h2 className="text-xl font-semibold text-gray-800">
+          Sign in Required
+        </h2>
+        <p className="text-gray-600 max-w-md">
+          You must be signed in to view available events. Please log in to
+          explore what's happening.
+        </p>
+        <Link
+          href="/sign-in"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded transition"
+        >
+          Go to Sign In
+        </Link>
       </div>
     );
   }
@@ -48,8 +60,9 @@ export default async function EventsPage(props: Props) {
 
   query = query.in("tier", filterTiers.length > 0 ? filterTiers : allowedTiers);
   query = query.order("event_date", { ascending: sortDirection === "asc" });
-  if (startDate) {query = query.gte("event_date", startDate);}
-  else{
+  if (startDate) {
+    query = query.gte("event_date", startDate);
+  } else {
     query = query.gte("event_date", new Date().toDateString());
   }
   if (endDate) query = query.lte("event_date", endDate);
@@ -65,11 +78,18 @@ export default async function EventsPage(props: Props) {
   return (
     <main className="p-6 max-w-6xl mx-auto">
       <div className="mb-6 flex items-center justify-between">
-  <h1 className="text-3xl font-bold">Browse Events</h1>
-  <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 font-medium">
-    Your Tier: {userTier.toUpperCase()}
-  </span>
-</div>
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <p className="text-gray-600 text-sm">
+            Welcome,{" "}
+            <span className="font-medium text-gray-800">
+              {user.username}
+            </span>
+          </p>
+        </div>
+        <span className="px-3 py-1 text-sm rounded-full bg-blue-100 text-blue-800 font-medium">
+          Your Tier: {userTier.toUpperCase()}
+        </span>
+      </div>
       <Filters />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
