@@ -7,6 +7,8 @@ export function Filters() {
   const filterTiers = searchParams.getAll("tier");
   const sortDirection = searchParams.get("sort") || "asc";
   const pageSize = searchParams.get("max_per_page") || "6";
+  const startDate = searchParams.get("start_date") || "";
+  const endDate = searchParams.get("end_date") || "";
 
   return (
     <form method="GET" className="mb-6 flex flex-wrap gap-4 items-center">
@@ -34,12 +36,29 @@ export function Filters() {
       </select>
 
       <select name="max_per_page" defaultValue={pageSize} className="border px-3 py-2 rounded">
-        {[2, 5, 10, 20].map((limit) => (
+        {[6, 9, 12, 18].map((limit) => (
           <option key={limit} value={limit}>
             {limit} per page
           </option>
         ))}
       </select>
+
+      <div className="flex gap-2 items-center">
+        <label className="text-sm font-medium">From:</label>
+        <input
+          type="date"
+          name="start_date"
+          defaultValue={startDate}
+          className="border px-3 py-2 rounded"
+        />
+        <label className="text-sm font-medium">To:</label>
+        <input
+          type="date"
+          name="end_date"
+          defaultValue={endDate}
+          className="border px-3 py-2 rounded"
+        />
+      </div>
 
       <input type="hidden" name="page" value="1" />
 
