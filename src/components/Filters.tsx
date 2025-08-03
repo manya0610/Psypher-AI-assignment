@@ -36,7 +36,7 @@ export function Filters() {
       </select>
 
       <select name="max_per_page" defaultValue={pageSize} className="border px-3 py-2 rounded">
-        {[6, 9, 12, 18].map((limit) => (
+        {[5, 10, 15, 20].map((limit) => (
           <option key={limit} value={limit}>
             {limit} per page
           </option>

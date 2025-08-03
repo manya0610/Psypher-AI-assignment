@@ -46,7 +46,7 @@ export default async function EventsPage(props: Props) {
   const allowedTiers = getAllowedTiers(userTier);
 
   const currentPage = parseInt(searchParams.page || "1", 10);
-  const pageSize = parseInt(searchParams.max_per_page || "2", 10);
+  const pageSize = parseInt(searchParams.max_per_page || "5", 10);
   const sortDirection = searchParams.sort === "desc" ? "desc" : "asc";
   const startDate = searchParams.start_date;
   const endDate = searchParams.end_date;
